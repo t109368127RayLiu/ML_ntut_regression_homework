@@ -12,9 +12,9 @@ def Data(path):
 
     #print(data)
     #data=data.drop(columns=['id'])
-    data=data.drop(columns=['id', 'zipcode'])
+    #data=data.drop(columns=['id', 'zipcode'])
     #data=data.drop(columns=['id', 'zipcode', 'lat', 'long'])
-    #data=data.drop(columns=['id', 'zipcode', 'sale_yr', 'sale_month', 'sale_day', 'lat', 'long'])
+    data=data.drop(columns=['id', 'zipcode', 'sale_yr', 'sale_month', 'sale_day', 'lat', 'long'])
     
     dataset=np.array(data)
     #print("dataset==",dataset.shape)
@@ -46,6 +46,8 @@ def normalize(train,valid,test):
 X_train, Y_train = Data('./train-v3.csv')
 #print("X_train",X_train)
 #print("X_train",Y_train)
+np.savetxt('./X_train.csv', X_train,delimiter=',', fmt='%i')
+
 X_valid, Y_valid = Data('./valid-v3.csv')
 #print("X_train",Y_valid)
 X_test, Y_test = Data('C:./test-v3.csv')
@@ -64,13 +66,10 @@ model = keras.Sequential([
     keras.layers.Dense(40, input_dim=X_train.shape[1]),
     keras.layers.Dense(95, activation='relu'),
 
-    keras.layers.Dense(120, activation='relu'),
-
-    keras.layers.Dense(60, activation='relu'),
-
     keras.layers.Dense(40, activation='relu'),
     keras.layers.Dense(30, activation='relu'),
     keras.layers.Dense(2, activation='relu'),
+
     keras.layers.Dense(1)
 ])
 
@@ -80,7 +79,7 @@ history =model.fit(X_train, Y_train, batch_size=30, epochs=150, validation_data=
 Y_predict = model.predict(X_test)
 
 
-print("000000000000000:",history.history.keys())
+print("history:",history.history.keys())
 
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
