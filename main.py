@@ -75,7 +75,7 @@ model = keras.Sequential([
 ])
 
 model.compile(optimizer='adam',loss='mae')
-history =model.fit(X_train, Y_train, batch_size=30, epochs=50, validation_data=(X_valid, Y_valid))
+history =model.fit(X_train, Y_train, batch_size=30, epochs=150, validation_data=(X_valid, Y_valid))
 
 Y_predict = model.predict(X_test)
 
