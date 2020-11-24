@@ -12,10 +12,10 @@ def Data(path):
 
     #print(data)
     #data=data.drop(columns=['id'])
-    #ata=data.drop(columns=['id', 'zipcode'])
+    #data=data.drop(columns=['id', 'zipcode'])  #67000
     #data=data.drop(columns=['id', 'zipcode', 'lat', 'long'])
-   # data=data.drop(columns=['id', 'zipcode', 'sale_yr', 'sale_month', 'sale_day'])
-    data=data.drop(columns=['id', 'zipcode', 'sale_yr', 'sale_month', 'sale_day', 'lat', 'long'])
+    #data=data.drop(columns=['id', 'zipcode', 'sale_yr', 'sale_month', 'sale_day'])  #不刪經緯68000
+    data=data.drop(columns=['id', 'zipcode', 'sale_yr', 'sale_month', 'sale_day', 'lat', 'long'])#刪經緯69000
     
     dataset=np.array(data)
     #print("dataset==",dataset.shape)
@@ -51,7 +51,7 @@ np.savetxt('./X_train.csv', X_train,delimiter=',', fmt='%i')
 
 X_valid, Y_valid = Data('./valid-v3.csv')
 #print("X_train",Y_valid)
-X_test, Y_test = Data('C:./test-v3.csv')
+X_test, Y_test = Data('./test-v3.csv')
 #print("X_train",Y_test)
 
 
